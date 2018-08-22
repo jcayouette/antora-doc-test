@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Autoinstallation Script for System Upgrade (SLES 11 SP4 to SLES 12 SP3) :: Uyuni Documentation (Prototype)</title>
+    <meta name="generator" content="Antora 1.0.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Uyuni Documentation (Prototype)</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="uyuni" data-version="3.2">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-explore is-active" data-panel="explore">
+  <div class="context">
+    <span class="title">Uyuni</span>
+    <span class="version">3.2</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Uyuni</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../dev/MAIN-manager.html">dev</a>
+        </li>
+        <li class="version is-current">
+          <a href="MAIN-manager.html">3.2</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../dev/MAIN-manager.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="MAIN-manager.html">Uyuni</a></li>
+    <li class="crumb"><a href="bp_ex_autoinst_system-upgrade.html">Sample Autoinstallation Script for System Upgrade (SLES 11 SP4 to SLES 12 SP3)</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">3.2</button>
+  <div class="versions-menu">
+    <a class="version" href="../dev/bp_ex_autoinst_system-upgrade.html">dev</a>
+    <a class="version is-current" href="bp_ex_autoinst_system-upgrade.html">3.2</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/jcayouette/uyuni-doc-test/edit/maintenance/3.2/docs/modules/ROOT/pages/bp_ex_autoinst_system-upgrade.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Sample Autoinstallation Script for System Upgrade (SLES 11 SP4 to SLES 12 SP3)</h1>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE profile&gt;
+&lt;profile xmlns="http://www.suse.com/1.0/yast2ns"
+         xmlns:config="http://www.suse.com/1.0/configns"&gt;
+  &lt;general&gt;
+  $SNIPPET('spacewalk/sles_no_signature_checks')
+    &lt;mode&gt;
+      &lt;confirm config:type="boolean"&gt;false&lt;/confirm&gt;
+    &lt;/mode&gt;
+  &lt;/general&gt;
+  &lt;add-on&gt;
+    &lt;add_on_products config:type="list"&gt;
+      &lt;listentry&gt;
+        &lt;ask_on_error config:type="boolean"&gt;true&lt;/ask_on_error&gt;
+        &lt;media_url&gt;http://$redhat_management_server/ks/dist/child/sle15-updates-x86_64/autumn2018&lt;/media_url&gt;
+        &lt;name&gt;SLE15 Updates&lt;/name&gt;
+        &lt;product&gt;SLE15&lt;/product&gt;
+        &lt;product_dir&gt;/&lt;/product_dir&gt;
+      &lt;/listentry&gt;
+      &lt;listentry&gt;
+        &lt;ask_on_error config:type="boolean"&gt;true&lt;/ask_on_error&gt;
+        &lt;media_url&gt;http://$redhat_management_server/ks/dist/child/sle-manager-tools15-pool-x86_64-sp3/summer2017&lt;/media_url&gt;
+        &lt;name&gt;SLE15 Manager Tools Pool&lt;/name&gt;
+        &lt;product&gt;SLE15&lt;/product&gt;
+        &lt;product_dir&gt;/&lt;/product_dir&gt;
+      &lt;/listentry&gt;
+      &lt;listentry&gt;
+        &lt;ask_on_error config:type="boolean"&gt;true&lt;/ask_on_error&gt;
+        &lt;media_url&gt;http://$redhat_management_server/ks/dist/child/sle-manager-tools15-updates-x86_64-sp3/summer2017&lt;/media_url&gt;
+        &lt;name&gt;SLE15 Manager Tools Updates&lt;/name&gt;
+        &lt;product&gt;SLE15&lt;/product&gt;
+        &lt;product_dir&gt;/&lt;/product_dir&gt;
+      &lt;/listentry&gt;
+    &lt;/add_on_products&gt;
+  &lt;/add-on&gt;
+  &lt;upgrade&gt;
+    &lt;only_installed_packages config:type="boolean"&gt;false&lt;/only_installed_packages&gt;
+    &lt;stop_on_solver_conflict config:type="boolean"&gt;true&lt;/stop_on_solver_conflict&gt;
+  &lt;/upgrade&gt;
+  &lt;backup&gt;
+    &lt;sysconfig config:type="boolean"&gt;true&lt;/sysconfig&gt;
+    &lt;modified config:type="boolean"&gt;true&lt;/modified&gt;
+    &lt;remove_old config:type="boolean"&gt;false&lt;/remove_old&gt;
+  &lt;/backup&gt;
+  &lt;networking&gt;
+    &lt;keep_install_network config:type="boolean"&gt;true&lt;/keep_install_network&gt;
+    &lt;start_immediately config:type="boolean"&gt;true&lt;/start_immediately&gt;
+  &lt;/networking&gt;
+   &lt;scripts&gt;
+    &lt;init-scripts config:type="list"&gt;
+      $SNIPPET('spacewalk/sles_register_script')
+    &lt;/init-scripts&gt;
+  &lt;/scripts&gt;
+&lt;/profile&gt;</pre>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUSE Manager Setup :: Uyuni Documentation (Prototype)</title>
+    <meta name="generator" content="Antora 1.0.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Uyuni Documentation (Prototype)</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="uyuni" data-version="3.2">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-explore is-active" data-panel="explore">
+  <div class="context">
+    <span class="title">Uyuni</span>
+    <span class="version">3.2</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Uyuni</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../dev/MAIN-manager.html">dev</a>
+        </li>
+        <li class="version is-current">
+          <a href="MAIN-manager.html">3.2</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../dev/MAIN-manager.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="MAIN-manager.html">Uyuni</a></li>
+    <li class="crumb"><a href="quickstart3_chap_suma_setup_with_yast.html">SUSE Manager Setup</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">3.2</button>
+  <div class="versions-menu">
+    <a class="version" href="../dev/quickstart3_chap_suma_setup_with_yast.html">dev</a>
+    <a class="version is-current" href="quickstart3_chap_suma_setup_with_yast.html">3.2</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/jcayouette/uyuni-doc-test/edit/maintenance/3.2/docs/modules/ROOT/pages/quickstart3_chap_suma_setup_with_yast.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>SUSE Manager Setup</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#suma.setup.with.yast.setup">Topics</a></li>
+<li><a href="#suma-setup-with-yast-sumasetup"> Setup</a>
+<ul class="sectlevel2">
+<li><a href="#suma.setup.with.yast.admin">Creating the Main Administration Account</a></li>
+<li><a href="#quickstart.first.channel.sync">Syncing Products from SUSE Customer Center</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="suma.setup.with.yast.setup"><a class="anchor" href="#suma.setup.with.yast.setup"></a><a class="link" href="#suma.setup.with.yast.setup">Topics</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section covers  setup.
+You will perform the following procedures:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start  setup via YaST or command line</p>
+</li>
+<li>
+<p>Create the main administration account with the  WebUI</p>
+</li>
+<li>
+<p>Name your base organization and add login credentials</p>
+</li>
+<li>
+<p>Sync the SUSE Linux Enterprise product channel from SUSE Customer Center</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="suma-setup-with-yast-sumasetup"><a class="anchor" href="#suma-setup-with-yast-sumasetup"></a><a class="link" href="#suma-setup-with-yast-sumasetup"> Setup</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section will guide you through  setup procedures.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure:  Setup</div>
+<ol class="arabic">
+<li>
+<p>Login to the  server desktop and perform one of the following actions to begin setup:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <span class="menuseq"><b class="menu">Applications</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">System Tools</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">YaST</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">SUSE Manager Setup</b></span>.</p>
+</li>
+<li>
+<p>Open a terminal as root and type <code class="command">yast2 susemanager_setup</code> to begin setup.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>From the introduction screen select <span class="menuseq"><b class="menu">SUSE Manager Setup</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Setup SUSE Manager from scratch</b></span>. Then click <b class="button">Next</b> to continue.</p>
+</li>
+<li>
+<p>Enter the email address that should receive status notifications about .
+The number of emails sent from  can be extensive, therefore notifications via email may be disabled from the WebUI after setup. Then click <b class="button">Next</b> to continue.</p>
+</li>
+<li>
+<p>Enter your certificate information and a password. The password should be stored in a secure location.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title=":heavy_exclamation_mark:"></i>
+</td>
+<td class="content">
+<div class="title">Certificate Password</div>
+<div class="paragraph">
+<p><em>Without this password it will not be possible to set up a  Proxy Server.</em></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Next</b> to continue.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/quickstart-mgr-setup4.png" alt="quickstart mgr setup4">
+</div>
+</div>
+</li>
+<li>
+<p>From the <span class="menuseq"><b class="menu">SUSE Manager Setup</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Database Settings</b></span> screen, enter a database user and password.
+This password should be stored in a secure location.
+Then click <b class="button">Next</b> to continue.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/quickstart-mgr-setup5.png" alt="quickstart mgr setup5">
+</div>
+</div>
+</li>
+<li>
+<p>Enter your SUSE Customer Center<code class="systemitem">Organization Credentials</code>.
+Open <a href="https://scc.suse.com/login" class="bare">https://scc.suse.com/login</a> to register or access to your organization credentials.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title=":information_source:"></i>
+</td>
+<td class="content">
+<div class="title"><b class="button">Skip</b></div>
+<div class="paragraph">
+<p>If you are using SUSE Enterprise products,  requires that you connect to SUSE Customer Center for software, updates and patches.
+You will not be able to synchronize or provide Enterprise channels to your clients without this information.</p>
+</div>
+<div class="paragraph">
+<p>However if you would like to work with open source software channels and repositories then click the <b class="button">Skip</b> button to continue.
+You can setup your SUSE Customer Center credentials or configure inter-server sync at a later time.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/quickstart-mgr-setup9.png" alt="quickstart mgr setup9">
+</div>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Next</b> to continue.</p>
+</li>
+<li>
+<p>Click <b class="button">Yes</b> to run setup when prompted.</p>
+</li>
+<li>
+<p>Once setup has completed, click <b class="button">Next</b> to continue.
+You will see the address of the  WebUI.</p>
+</li>
+<li>
+<p>Click <b class="button">Finish</b> to complete  setup.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the next section you will create the administrator&#8217;s account and synchronize with SUSE Customer Center.</p>
+</div>
+<div class="sect2">
+<h3 id="suma.setup.with.yast.admin"><a class="anchor" href="#suma.setup.with.yast.admin"></a><a class="link" href="#suma.setup.with.yast.admin">Creating the Main Administration Account</a></h3>
+<div class="paragraph">
+<p>This section will walk you through creating your organizations main administration account for .</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title=":warning:"></i>
+</td>
+<td class="content">
+<div class="title">Admin and User Accounts</div>
+<div class="paragraph">
+<p>The main administration account is the <em>highest authority account</em> within  and therefore account access information should be stored in a secure location.</p>
+</div>
+<div class="paragraph">
+<p>For security it is recommended that the main administrator creates <em>low level admin accounts</em> designated for administration of organizations and individual groups.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="suma.setup.admin.account" class="olist arabic">
+<div class="title">Procedure: Setup the Main Administration Account</div>
+<ol class="arabic">
+<li>
+<p>In the browser, enter the address provided after completing setup and open the  WebUI.</p>
+</li>
+<li>
+<p>Add your organization name to the <span class="menuseq"><b class="menu">Create Organization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Organization Name</b></span> field.</p>
+</li>
+<li>
+<p>Add your username and password to the <span class="menuseq"><b class="menu">Create Organization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Desired Login</b></span> and <span class="menuseq"><b class="menu">Create Organization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Desired Password</b></span> fields.</p>
+</li>
+<li>
+<p>Fill in the Account Information fields including an email for system notifications.</p>
+</li>
+<li>
+<p>Select <b class="menuref">Create Organization</b> to finish creating your administration account.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/quickstart-mgr-setup-admin1.png" alt="quickstart mgr setup admin1">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You should now be presented with the  Front Page. In the next section you will prepare the server for connecting the first client.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quickstart.first.channel.sync"><a class="anchor" href="#quickstart.first.channel.sync"></a><a class="link" href="#quickstart.first.channel.sync">Syncing Products from SUSE Customer Center</a></h3>
+<div class="paragraph">
+<p>SUSE Customer Center (SCC) maintains a collection of repositories which contain packages, software and updates for all supported enterprise client systems.
+These repositories are organized into channels each of which provide software specific to a distribution, release and architecture.
+After synchronizing with SCC clients may receive updates, and be organized into groups and assigned to specific product software channels.</p>
+</div>
+<div class="paragraph">
+<p>This section covers synchronizing with SCC from the WebUI and adding your first client channel.</p>
+</div>
+<div id="proc-quickstart-first-channel-sync" class="olist arabic">
+<div class="title">Procedure: Synchronizing with SUSE Customer Center</div>
+<ol class="arabic">
+<li>
+<p>From the  WebUI start page select <span class="menuseq"><b class="menu">Admin</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Setup Wizard</b></span>.</p>
+</li>
+<li>
+<p>From the <span class="menuseq"><b class="menu">Main Menu</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Admin</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Setup Wizard</b></span> page select the <b class="button">SUSE Products</b> tab.
+Wait a moment for the products list to populate.
+If you previously registered with SUSE Customer Center a list of products will populate the table.
+This table lists architecture, channels, and status information.
+For more information, see:
+<a href="reference-webui-admin.html#ref-webui-product-wizard" class="page">Product Wizard</a></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/admin_suse_products.png" alt="admin suse products">
+</div>
+</div>
+</li>
+<li>
+<p>Since Your SUSE Linux Enterprise client is based on <code class="systemitem">x86_64</code> architecture scroll down the page and select the check box for this channel now.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add channels to  by selecting the check box to the left of each channel.
+Click the arrow symbol to the left of the description to unfold a product and list available modules.</p>
+</li>
+<li>
+<p>Start product synchronization by clicking the <b class="button">Add Products</b> button.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After adding the channel  will schedule the channel to be copied.
+This can take a long time as  will copy channel software sources from the SUSE repositories located at SUSE Customer Center to local <code class="path">/var/spacewalk/</code> directory of your server.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title=":bulb:"></i>
+</td>
+<td class="content">
+<div class="title">PostgreSQL and Transparant Huge Pages</div>
+<div class="paragraph">
+<p>In some environments, <em>Transparent Huge Pages</em> provided by the kernel may slow down PostgreSQL workloads significantly.</p>
+</div>
+<div class="paragraph">
+<p>To disable <em>Transparant Huge Pages</em> set the <code class="option">transparent_hugepage</code> kernel parameter to <code class="option">never</code>.
+This has to be changed in <code class="path">/etc/default/grub</code> and added to the line <code class="option">GRUB_CMDLINE_LINUX_DEFAULT</code>, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/sda1 splash=silent quiet showopts elevator=noop transparent_hugepage=never"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To write the new configuration run <code class="command">grub2-mkconfig -o /boot/grub2/grub.cfg</code>.
+To update the grub2 during boot run <code class="command">grub2-install /dev/sda</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Monitor channel synchronization process in real-time by viewing channel log files located in the directory <code class="path">/var/log/rhn/reposync</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>tailf /var/log/rhn/reposync/&lt;CHANNEL_NAME&gt;.log</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the channel sync process has completed proceed to:
+<a href="quickstart3_chap_suma_keys_and_first_client.html#gs-registering-clients" class="page">Registering Clients</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

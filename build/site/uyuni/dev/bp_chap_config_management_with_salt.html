@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Management with Salt :: Uyuni Documentation (Prototype)</title>
+    <meta name="generator" content="Antora 1.0.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Uyuni Documentation (Prototype)</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="uyuni" data-version="dev">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-explore is-active" data-panel="explore">
+  <div class="context">
+    <span class="title">Uyuni</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Uyuni</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="MAIN-manager.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../3.2/MAIN-manager.html">3.2</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="MAIN-manager.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="MAIN-manager.html">Uyuni</a></li>
+    <li class="crumb"><a href="bp_chap_config_management_with_salt.html">Configuration Management with Salt</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">dev</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="bp_chap_config_management_with_salt.html">dev</a>
+    <a class="version" href="../3.2/bp_chap_config_management_with_salt.html">3.2</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/jcayouette/uyuni-doc-test/edit/master/docs/modules/ROOT/pages/bp_chap_config_management_with_salt.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Configuration Management with Salt</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#bp.chapt.config.mgr.overview">Configuration Management Overview</a></li>
+<li><a href="#bp.chapt.config.mgr.level.hierarchy">State Data: Levels of Hierarchy</a></li>
+<li><a href="#bp.chapt.config.mgr.salt.states.storage.locations">Salt States Storage Locations</a></li>
+<li><a href="#bp.chapt.config.mgr.susemgr.states"> States</a></li>
+<li><a href="#bp.chapt.config.mgr.pillar.data">Pillar Data</a></li>
+<li><a href="#bp.sect.groupstates">Group States</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="bp.chapt.config.mgr.overview"><a class="anchor" href="#bp.chapt.config.mgr.overview"></a><a class="link" href="#bp.chapt.config.mgr.overview">Configuration Management Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Salt is capable of applying states by matching minions with relevant state data.
+This data comes from  in the form of package and custom states.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bp.chapt.config.mgr.level.hierarchy"><a class="anchor" href="#bp.chapt.config.mgr.level.hierarchy"></a><a class="link" href="#bp.chapt.config.mgr.level.hierarchy">State Data: Levels of Hierarchy</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>State data comes from  in the form of package and custom states and targets minions at three specific levels of hierarchy.
+The state hierarchy is defined by the following order or priority: individual minions have priority on packages and custom states over groups; next a group has priority over the organization.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Minion Level</p>
+<div class="paragraph">
+<p><span class="menuseq"><b class="menu">Systems</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Specific Minion</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">States</b></span></p>
+</div>
+</li>
+<li>
+<p>Group Level</p>
+<div class="paragraph">
+<p><span class="menuseq"><b class="menu">Systems</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">System Groups</b></span></p>
+</div>
+</li>
+<li>
+<p>Organization Level</p>
+<div class="paragraph">
+<p><span class="menuseq"><b class="menu">Systems</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Manage System Types:</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">My Organization</b></span></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Org1 requires that vim version 1 is installed</p>
+</li>
+<li>
+<p>Group1 requires that vim version 2 is installed</p>
+</li>
+<li>
+<p>Group2 requires any version installed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This would lead to the following order of hierarchy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Minion1 part of [Org1, Group1] wants vim removed, vim is removed (Minion Level)</p>
+</li>
+<li>
+<p>Minion2 part of [Org1, Group1] wants vim version 2 gets version 2 (Group Level)</p>
+</li>
+<li>
+<p>Minion3 part of [Org1, Group1] wants any version, gets version 2 (Org Level)</p>
+</li>
+<li>
+<p>Minion4 part of[Org1, Group2] wants any version, gets vim version 1 (Org Level)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bp.chapt.config.mgr.salt.states.storage.locations"><a class="anchor" href="#bp.chapt.config.mgr.salt.states.storage.locations"></a><a class="link" href="#bp.chapt.config.mgr.salt.states.storage.locations">Salt States Storage Locations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The  salt-master reads its state data from three file root locations.</p>
+</div>
+<div class="paragraph">
+<p>The directory <code class="path">/usr/share/susemanager/salt</code>
+ is used by  and comes from the susemanager-sls.
+It is shipped and updated together with  and includes certificate setup and common state logic to be applied to packages and channels.</p>
+</div>
+<div class="paragraph">
+<p>The directory <code class="path">/srv/susemanager/salt</code> is generated by  and based on assigned channels and packages for minions, groups and organizations.
+This file will be overwritten and regenerated.
+This could be thought of as the  database translated into salt directives.</p>
+</div>
+<div class="paragraph">
+<p>The third directory <code class="path">/srv/salt</code> is for custom state data, modules etc.
+ does not operate within or utilize this directory.
+However the state data placed here affects the Highstate of minions and is merged with the total state result generated by .</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bp.chapt.config.mgr.susemgr.states"><a class="anchor" href="#bp.chapt.config.mgr.susemgr.states"></a><a class="link" href="#bp.chapt.config.mgr.susemgr.states"> States</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All sls files created by users will be saved to disk on the salt-master server.
+These files will be placed in <code class="path">/srv/susemanager/salt/</code>
+ and each organization will be placed within its own directory.
+Although these states are custom, these states are created using 
+.
+The following provides an overview of directory structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>├── manager_org_DEVEL
+│   ├── files
+│   │    ... files needed by states (uploaded by users)...
+│   └── state.sls
+         ... other sls files (created by users)...
+E.g.:
+├── manager_org_TESTING
+│   ├── files
+│   │   └── motd     # user created
+│   │    ... other files needed by states ...
+│   └── motd.sls     # user created
+            ... other sls files ...</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bp.chapt.config.mgr.pillar.data"><a class="anchor" href="#bp.chapt.config.mgr.pillar.data"></a><a class="link" href="#bp.chapt.config.mgr.pillar.data">Pillar Data</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>SUSE Manager exposes a small amount of internal data as Pillars which can be used with custom SUSE Linux Enterprise Server states.
+Data that is exposed includes group membership, organization membership, and file roots.
+These are managed either automatically by , or manually by the user.</p>
+</div>
+<div class="paragraph">
+<p>To avoid hard-coding organization IDs within SUSE Linux Enterprise Server files, a pillar entry is added for each organization:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org-files-dir: relative_path_to_files</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The specified file is available for all minions which belong to the organization.</p>
+</div>
+<div class="paragraph">
+<p>This is an example of a Pillar located at <code class="path">/etc/motd</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>file.managed:
+    - source: salt://{{ pillar['org-files-dir']}}/motd
+    - user: root
+    - group: root
+    - mode: 644</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bp.sect.groupstates"><a class="anchor" href="#bp.sect.groupstates"></a><a class="link" href="#bp.sect.groupstates">Group States</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pillar data can be used to perform bulk actions, like applying all assigned states to minions within the group.
+This section contains some example of bulk actions that you can take using group states.</p>
+</div>
+<div class="paragraph">
+<p>In order to perform these actions, you will need to determine the ID of the group that you want to manipulate.
+You can determine the Group ID by using the <code class="command">spacecmd</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>spacecmd group_details</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In these examples we will use an example Group ID of <code class="systemitem">GID</code>.</p>
+</div>
+<div class="paragraph">
+<p>To apply all states assigned to the group:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>salt -I 'group_ids:GID' state.apply custom.group_GID</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To apply any state (whether or not it is assigned to the group):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>salt -I 'group_ids:GID' state.apply ``state``</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To apply a custom state:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>salt -I 'group_ids:2130' state.apply manager_org_1.``customstate``</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the highstate to all minions in the group:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>salt -I 'group_ids:GID' state.apply</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
